@@ -38,7 +38,6 @@ fun part2(graph: Map<String, List<String>>, start: String, end: String): Int {
     return count
 }
 
-@OptIn(ExperimentalStdlibApi::class)
 fun main() {
     val graph = buildMap<String, MutableList<String>> {
         File("input.txt").forEachLine { line ->

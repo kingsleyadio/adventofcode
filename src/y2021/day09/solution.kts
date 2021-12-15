@@ -38,7 +38,6 @@ fun part2(input: List<List<Int>>): Int {
     return basins.sorted().takeLast(3).fold(1) { acc, n -> acc * n }
 }
 
-@OptIn(ExperimentalStdlibApi::class)
 fun adjacentPoints(y: Int, x: Int, input: List<List<Int>>): List<IntArray> {
     return buildList {
         if (y > 0) add(intArrayOf(y - 1, x))

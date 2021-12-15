@@ -17,7 +17,6 @@ fun part2(dots: Set<Point>, commands: List<Point>): String {
     }
 }
 
-@OptIn(ExperimentalStdlibApi::class)
 fun fold(dots: Set<Point>, command: Point): Set<Point> {
     val (x, y) = command
     val full = max(x, y) shl 1

@@ -1,4 +1,3 @@
-import Solution.Board
 import java.io.File
 
 fun solution(numbers: List<Int>, boards: MutableList<Board>, exitFirst: Boolean): Int {
@@ -26,7 +25,6 @@ fun main() {
     println(solution(numbers, boards, exitFirst = false))
 }
 
-@OptIn(ExperimentalStdlibApi::class)
 fun readInput(): Pair<List<Int>, MutableList<Board>> = File("input.txt").useLines { lines ->
     val iterator = lines.iterator()
     val numbers = iterator.next().split(",").map { it.toInt() }
