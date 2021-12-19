@@ -26,20 +26,11 @@ sealed interface Packet {
 
     class Expression(
         override val version: Int,
-        private val operator: Int,
+        private val operator: (List<Packet>) -> Long,
         private val subPackets: List<Packet>
     ) : Packet {
         override fun versionSum() = version + subPackets.sumOf(Packet::versionSum)
-        override fun evaluate(): Long = when (operator) {
-            0 -> subPackets.sumOf { it.evaluate() }
-            1 -> subPackets.fold(1L) { acc, packet -> acc * packet.evaluate() }
-            2 -> subPackets.minOf { it.evaluate() }
-            3 -> subPackets.maxOf { it.evaluate() }
-            5 -> if (subPackets[0].evaluate() > subPackets[1].evaluate()) 1L else 0L
-            6 -> if (subPackets[0].evaluate() < subPackets[1].evaluate()) 1L else 0L
-            7 -> if (subPackets[0].evaluate() == subPackets[1].evaluate()) 1L else 0L
-            else -> error("Invalid operator")
-        }
+        override fun evaluate() = operator.invoke(subPackets)
     }
 }
 
@@ -67,7 +58,19 @@ fun parse(input: String): Packet {
                     val subPacketCount = reader.readBinary(11)
                     repeat(subPacketCount) { subPackets.add(parse(reader)) }
                 }
-                return Packet.Expression(version, typeId, subPackets)
+                val operator: (List<Packet>) -> Long = { packets ->
+                    when (typeId) {
+                        0 -> packets.sumOf { it.evaluate() }
+                        1 -> packets.fold(1L) { acc, packet -> acc * packet.evaluate() }
+                        2 -> packets.minOf { it.evaluate() }
+                        3 -> packets.maxOf { it.evaluate() }
+                        5 -> if (packets[0].evaluate() > packets[1].evaluate()) 1 else 0
+                        6 -> if (packets[0].evaluate() < packets[1].evaluate()) 1 else 0
+                        7 -> if (packets[0].evaluate() == packets[1].evaluate()) 1 else 0
+                        else -> error("Invalid operator")
+                    }
+                }
+                return Packet.Expression(version, operator, subPackets)
             }
         }
     }
