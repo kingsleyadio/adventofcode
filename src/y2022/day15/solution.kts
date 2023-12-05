@@ -15,8 +15,8 @@ fun part1(data: Map<Point, Point>, rowIndex: Int) {
     var bIndex = 0
     for (range in exclusions) {
         count += range.endInclusive - range.start + 1
-        while (sortedBeacons[bIndex] < range.start) bIndex++
-        if (sortedBeacons[bIndex] in range) count--
+        while (bIndex < sortedBeacons.size && sortedBeacons[bIndex] < range.start) bIndex++
+        if (bIndex < sortedBeacons.size && sortedBeacons[bIndex] in range) count--
     }
     println(count)
 }
