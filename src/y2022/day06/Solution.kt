@@ -1,8 +1,9 @@
 package y2022.day06
-import java.io.File
+
+import util.readInput
 
 fun main() {
-    val input = File("input.txt").readText()
+    val input = readInput(2022, 6).readText()
     solution(input, 4)
     solution(input, 14)
 }

@@ -1,6 +1,6 @@
 package y2022.day09
 
-import java.io.File
+import util.readInput
 import kotlin.math.abs
 import kotlin.math.sign
 
@@ -15,7 +15,7 @@ fun solution(knotCount: Int) {
     val h = knots.first()
     val t = knots.last()
     grid[t[0]][t[1]] = true
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 9).forEachLine { line ->
         val (direction, count) = line.split(" ")
         repeat(count.toInt()) {
             when (direction) {
@@ -42,5 +42,3 @@ fun solution(knotCount: Int) {
     val visits = grid.sumOf { it.count { visited -> visited } }
     println(visits)
 }
-
-main()

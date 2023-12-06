@@ -1,5 +1,6 @@
 package y2022.day01
-import java.io.File
+
+import util.readInput
 
 fun main() {
     part1()
@@ -9,7 +10,7 @@ fun main() {
 fun part1() {
     var max = 0
     var sum = 0
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 1).forEachLine { line ->
         if (line.isEmpty()) {
             max = maxOf(max, sum)
             sum = 0
@@ -33,7 +34,7 @@ fun part2() {
         }
     }
     var sum = 0
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 1).forEachLine { line ->
         if (line.isEmpty()) {
             place(sum)
             sum = 0

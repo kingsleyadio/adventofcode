@@ -1,6 +1,6 @@
 package y2022.day14
 
-import java.io.File
+import util.readInput
 
 fun main() {
     val cave = buildCave()
@@ -63,7 +63,7 @@ fun buildCave(): Cave {
     var right = 0
     var bottom = 0
     val outline = buildSet {
-        File("input.txt").forEachLine { line ->
+        readInput(2022, 14).forEachLine { line ->
             val spots = line.split(" -> ").map { spot ->
                 val (x, y) = spot.split(",").map(String::toInt)
                 Point(x, y)
@@ -86,5 +86,3 @@ fun buildCave(): Cave {
 
 class Cave(val outline: Set<Point>, val leftmost: Int, val rightmost: Int, val bottom: Int)
 data class Point(val x: Int, val y: Int)
-
-main()

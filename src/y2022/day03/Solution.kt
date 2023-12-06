@@ -1,5 +1,6 @@
 package y2022.day03
-import java.io.File
+
+import util.readInput
 
 fun main() {
     part1()
@@ -8,7 +9,7 @@ fun main() {
 
 fun part1() {
     var result = 0
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 3).forEachLine { line ->
         val first = line.substring(0, line.length / 2)
         val second = line.substring(line.length / 2)
 
@@ -27,7 +28,7 @@ fun part1() {
 
 fun part2() {
     var result = 0
-    File("input.txt").useLines { lines ->
+    readInput(2022, 3).useLines { lines ->
         lines.windowed(3, 3).forEach { (first, second, third) ->
             val array = IntArray(52)
             for (char in first) array[valueOfChar(char) - 1] = 1

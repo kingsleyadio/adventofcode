@@ -1,6 +1,6 @@
 package y2022.day13
 
-import java.io.File
+import util.readInput
 
 fun main() {
     val input = parseInput()
@@ -39,7 +39,7 @@ fun part2(input: List<*>) {
 }
 
 fun parseInput(): List<*> = buildList {
-    File("input.txt").forEachLine { if (it.isNotEmpty()) add(parseLine(it)) }
+    readInput(2022, 13).forEachLine { if (it.isNotEmpty()) add(parseLine(it)) }
 }
 
 fun parseLine(line: String): List<*> {
@@ -88,5 +88,3 @@ fun checkIsRightOrder(left: Any?, right: Any?): Result {
 enum class Result {
     PASS, FAIL, UNDEFINED
 }
-
-main()

@@ -1,6 +1,6 @@
 package y2022.day15
 
-import java.io.File
+import util.readInput
 import kotlin.math.abs
 
 fun main() {
@@ -68,7 +68,7 @@ fun parseInput(): Map<Point, Point> {
     val np = "(-?\\d+)"
     val pattern = "Sensor at x=$np, y=$np: closest beacon is at x=$np, y=$np".toRegex()
     val data = mutableMapOf<Point, Point>()
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 15).forEachLine { line ->
         val (sx, sy, bx, by) = pattern.matchEntire(line)!!.groupValues.drop(1).map { it.toInt() }
         data[Point(sx, sy)] = Point(bx, by)
     }
@@ -77,5 +77,3 @@ fun parseInput(): Map<Point, Point> {
 
 data class Point(val x: Int, val y: Int)
 data class RowData(val exclusiveIndices: List<ClosedRange<Int>>, val beaconIndices: List<Int>)
-
-main()

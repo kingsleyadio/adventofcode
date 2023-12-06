@@ -1,6 +1,6 @@
 package y2022.day16
 
-import java.io.File
+import util.readInput
 import java.util.*
 
 fun main() {
@@ -221,7 +221,7 @@ fun shortestDistance(graph: Map<String, ValveInfo>, start: String, end: String):
 
 fun parseInput(): Map<String, ValveInfo> = buildMap {
     val pattern = "Valve ([A-Z]+) has flow rate=([0-9]+); tunnels? leads? to valves? (.*)".toRegex()
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 16).forEachLine { line ->
         val (valve, rate, ends) = pattern.matchEntire(line)!!.groupValues.drop(1)
         val exits = ends.split(", ")
         put(valve, ValveInfo(valve, rate.toInt(), exits))
@@ -231,8 +231,6 @@ fun parseInput(): Map<String, ValveInfo> = buildMap {
 data class ValveInfo(val id: String, val flowRate: Int, val exits: List<String>)
 data class Cost(val value: Int, val path: List<String>)
 data class Path(val to: String, val cost: Int, val from: List<String>)
-
-main()
 
 
 fun traverse(nums: Array<String>, start: Int, onPath: (Array<String>) -> Unit) {

@@ -1,6 +1,6 @@
 package y2022.day07
 
-import java.io.File
+import util.readInput
 
 fun main() {
     val fs = buildFs()
@@ -44,7 +44,7 @@ fun Fs.sumWithATwist(limit: Int, checkBelow: Boolean, onHit: (Int) -> Unit): Int
 private fun buildFs(): Fs {
     val root = Fs.Directory("/", null)
     var current: Fs.Directory = root
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 7).forEachLine { line ->
         val splits = line.split(" ")
         if (splits[0] == "$") { // Command
             if (splits[1] == "cd") current = when (val destination = splits[2]) {

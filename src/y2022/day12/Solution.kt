@@ -1,6 +1,6 @@
 package y2022.day12
 
-import java.io.File
+import util.readInput
 import java.util.*
 
 fun main() {
@@ -56,7 +56,7 @@ fun buildGrid(): Grid {
     var end = Point(0, 0)
     var rowIndex = 0
     val grid = buildList {
-        File("input.txt").forEachLine { line ->
+        readInput(2022, 12).forEachLine { line ->
             val row = line
                 .onEachIndexed { index, char -> if (char == 'S') start = Point(rowIndex, index) }
                 .onEachIndexed { index, char -> if (char == 'E') end = Point(rowIndex, index) }
@@ -71,5 +71,3 @@ fun buildGrid(): Grid {
 data class Grid(val outline: List<List<Int>>, val start: Point, val end: Point)
 data class Point(val y: Int, val x: Int)
 data class Path(val to: Point, val cost: Int)
-
-main()

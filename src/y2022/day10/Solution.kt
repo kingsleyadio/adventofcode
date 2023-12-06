@@ -1,6 +1,6 @@
 package y2022.day10
 
-import java.io.File
+import util.readInput
 
 fun main() {
     part1()
@@ -15,7 +15,7 @@ fun part1() {
         val interestingCycles = setOf(20, 60, 100, 140, 180, 220)
         if (cycle in interestingCycles) signalSums += cycle * value
     }
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 10).forEachLine { line ->
         val split = line.split(" ")
         cycle++
         checksum()
@@ -38,7 +38,7 @@ fun part2() {
         val x = index % 40
         crt[y][x] = if (x in value - 1..value + 1) '#' else ' '
     }
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 10).forEachLine { line ->
         val split = line.split(" ")
         cycle++
         display()
@@ -50,5 +50,3 @@ fun part2() {
     }
     crt.forEach { println(String(it)) }
 }
-
-main()

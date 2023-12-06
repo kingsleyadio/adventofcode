@@ -1,6 +1,6 @@
 package y2022.day11
 
-import java.io.File
+import util.readInput
 
 fun main() {
     solution(loadMonkeys(), 20, true)
@@ -24,7 +24,7 @@ fun solution(monkeys: List<Monkey>, rounds: Int, divisibleBy3: Boolean) {
 
 fun loadMonkeys(): List<Monkey> {
     val monkeys = mutableListOf<Monkey>()
-    File("input.txt").useLines { lineSequence ->
+    readInput(2022, 11).useLines { lineSequence ->
         val lines = lineSequence.iterator()
         while (lines.hasNext()) {
             lines.next()
@@ -73,5 +73,3 @@ class Monkey(
         itemsInHand.clear()
     }
 }
-
-main()

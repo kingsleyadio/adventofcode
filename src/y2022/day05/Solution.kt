@@ -1,5 +1,6 @@
 package y2022.day05
-import java.io.File
+
+import util.readInput
 
 fun main() {
     solution(false)
@@ -7,7 +8,7 @@ fun main() {
 }
 
 fun solution(retainOrder: Boolean) {
-    File("input.txt").useLines { lineSequence ->
+    readInput(2022, 5).useLines { lineSequence ->
         val lines = lineSequence.iterator()
         val entries = mutableListOf<ArrayDeque<Char>>()
         for (line in lines) {

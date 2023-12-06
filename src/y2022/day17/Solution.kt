@@ -1,6 +1,6 @@
 package y2022.day17
 
-import java.io.File
+import util.readInput
 
 fun main() {
     val input = parseInput()
@@ -81,7 +81,7 @@ fun simulation(jet: String, rockCount: Long): Long {
 }
 
 fun parseInput(): String {
-    return File("input.txt").readText().trim()
+    return readInput(2022, 17).readText().trim()
 }
 
 val ROCKS = listOf(
@@ -99,5 +99,3 @@ val ROCKS = listOf(
     arrayOf(booleanArrayOf(true), booleanArrayOf(true), booleanArrayOf(true), booleanArrayOf(true)),
     arrayOf(booleanArrayOf(true, true), booleanArrayOf(true, true)),
 )
-
-main()

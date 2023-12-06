@@ -1,5 +1,6 @@
 package y2022.day07
-import java.io.File
+
+import util.readInput
 
 fun main() {
     val fsMap = buildFs()
@@ -27,7 +28,7 @@ fun part2(fs: Map<String, Int>) {
 private fun buildFs(): Map<String, Int> {
     val map = hashMapOf("" to 0)
     var current = ""
-    File("input.txt").forEachLine { line ->
+    readInput(2022, 7).forEachLine { line ->
         val split = line.split(" ")
         if (split[0] == "$") {
             if (split[1] == "cd") {

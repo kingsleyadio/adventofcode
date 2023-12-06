@@ -1,8 +1,9 @@
 package y2022.day02
-import java.io.File
+
+import util.readInput
 
 fun main() {
-    val input = File("input.txt").readLines()
+    val input = readInput(2022, 2).readLines()
     part1(input)
     part2(input)
 }
