@@ -1,4 +1,4 @@
-package y2023.day05
+package com.kingsleyadio.adventofcode.y2023
 
 import java.io.File
 
@@ -36,12 +36,12 @@ fun main() {
     part2(seeds, cultivator)
 }
 
-fun part1(seeds: List<Long>, cultivator: Cultivator) {
+private fun part1(seeds: List<Long>, cultivator: Cultivator) {
     val lowestLocation = seeds.minOf(cultivator::calculateSeedLocation)
     println(lowestLocation)
 }
 
-fun part2(spec: List<Long>, cultivator: Cultivator) {
+private fun part2(spec: List<Long>, cultivator: Cultivator) {
     // Using asSequence here to avoid OOM
     val seeds = spec.asSequence().chunked(2).flatMap { (start, size) -> start..<start+size }
     val lowestLocation = seeds.minOf(cultivator::calculateSeedLocation)
@@ -86,5 +86,3 @@ fun Iterator<String>.generateMap(): Map<LongRange, Long> = buildMap {
         put(src..<src + range, dest)
     }
 }
-
-main()

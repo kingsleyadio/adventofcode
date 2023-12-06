@@ -1,15 +1,17 @@
-import java.io.File
+package com.kingsleyadio.adventofcode.y2023
+
+import com.kingsleyadio.adventofcode.util.readInput
 
 fun main() {
     part1()
     part2()
 }
 
-fun part1() {
+private fun part1() {
     val maxR = 12
     val maxG = 13
     val maxB = 14
-    File("input.txt").useLines { lines ->
+    readInput(2023, 2).useLines { lines ->
         val result = lines.map { line ->
             val (id, gameInfo) = line.split(": ")
             val gameNumber = id.split(" ").last().toInt()
@@ -40,8 +42,8 @@ fun part1() {
     }
 }
 
-fun part2() {
-    File("input.txt").useLines { lines ->
+private fun part2() {
+    readInput(2023, 2).useLines { lines ->
         val result = lines.map { line ->
             val (_, gameInfo) = line.split(": ")
             val max = gameInfo.split("; ").map { game ->
@@ -61,5 +63,3 @@ fun part2() {
         println(result)
     }
 }
-
-main()

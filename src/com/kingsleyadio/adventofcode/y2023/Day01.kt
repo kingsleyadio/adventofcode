@@ -1,13 +1,15 @@
-import java.io.File
+package com.kingsleyadio.adventofcode.y2023
+
+import com.kingsleyadio.adventofcode.util.readInput
 
 fun main() {
     part1()
     part2()
 }
 
-fun part1() {
+private fun part1() {
     var sum = 0
-    File("input.txt").forEachLine { line ->
+    readInput(2023, 1).forEachLine { line ->
         val first = line.first { it.isDigit() }.digitToInt()
         val last = line.last { it.isDigit() }.digitToInt()
         sum += first * 10 + last
@@ -15,10 +17,10 @@ fun part1() {
     println(sum)
 }
 
-fun part2() {
+private fun part2() {
     var sum = 0
     val numbers = listOf("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
-    File("input.txt").forEachLine { line ->
+    readInput(2023, 1).forEachLine { line ->
         val first = run {
             val numIndex = line.indexOfFirst { it.isDigit() }
             val numNumber = line[numIndex].digitToInt()
@@ -53,5 +55,3 @@ fun part2() {
     }
     println(sum)
 }
-
-main()

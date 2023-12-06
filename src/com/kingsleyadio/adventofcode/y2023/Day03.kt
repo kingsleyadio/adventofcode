@@ -1,9 +1,9 @@
-package y2023.day03
+package com.kingsleyadio.adventofcode.y2023
 
-import java.io.File
+import com.kingsleyadio.adventofcode.util.readInput
 
 fun main() {
-    val problem = File("input.txt").useLines { lines ->
+    val problem = readInput(2023, 3).useLines { lines ->
         val grid = lines.toList()
         val numberIndices = mutableMapOf<Index, NumberInfo>()
         for (y in grid.indices) {
@@ -24,7 +24,7 @@ fun main() {
     part2(problem)
 }
 
-fun part1(problem: Problem) {
+private fun part1(problem: Problem) {
     val validNumbers = mutableSetOf<NumberInfo>()
     val neighbors = intArrayOf(-1, 0, 1)
     for (y in problem.grid.indices) {
@@ -43,7 +43,7 @@ fun part1(problem: Problem) {
     println(sum)
 }
 
-fun part2(problem: Problem) {
+private fun part2(problem: Problem) {
     var sumOfRatios = 0
     val neighbors = intArrayOf(-1, 0, 1)
     for (y in problem.grid.indices) {
@@ -79,5 +79,3 @@ data class NumberInfo(val y: Int, val xRange: IntRange) {
 data class Index(val x: Int, val y: Int)
 
 fun Char.isSymbol() = this !in '0'..'9' && this != '.'
-
-main()

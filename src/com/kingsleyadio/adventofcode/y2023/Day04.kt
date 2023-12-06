@@ -1,14 +1,14 @@
-package y2023.day04
+package com.kingsleyadio.adventofcode.y2023
 
-import java.io.File
+import com.kingsleyadio.adventofcode.util.readInput
 
 fun main() {
     part1()
     part2()
 }
 
-fun part1() {
-    val points = File("input.txt").useLines { lines ->
+private fun part1() {
+    val points = readInput(2023, 4).useLines { lines ->
         lines.sumOf { line ->
             val (winner, own) = line.split(" | ")
             val numbers = winner.substringAfter(": ").trim().split(" +".toRegex()).mapTo(hashSetOf()) { it.toInt() }
@@ -20,8 +20,8 @@ fun part1() {
     println(points)
 }
 
-fun part2() {
-    val game = File("input.txt").readLines()
+private fun part2() {
+    val game = readInput(2023, 4).readLines()
     val wins = IntArray(game.size) { 1 }
     for (i in game.indices) {
         val (winner, own) = game[i].split(" | ")
@@ -34,5 +34,3 @@ fun part2() {
     val total = wins.fold(0) { acc, n -> acc + n }
     println(total)
 }
-
-main()
