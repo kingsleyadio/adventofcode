@@ -1,6 +1,6 @@
 package y2021.day14
 
-import java.io.File
+import util.readInput
 
 private fun solution(template: String, map: Map<String, Char>, steps: Int): Long {
     fun tick(input: Map<String, Long>): Map<String, Long> = buildMap {
@@ -24,7 +24,7 @@ private fun solution(template: String, map: Map<String, Char>, steps: Int): Long
 }
 
 fun main() {
-    File("input.txt").useLines { lines ->
+    readInput(2021, 14).useLines { lines ->
         val iterator = lines.iterator()
         val template = iterator.next()
         iterator.next()

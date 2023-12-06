@@ -1,6 +1,6 @@
 package y2021.day09
 
-import java.io.File
+import util.readInput
 
 fun part1(input: List<List<Int>>): Int {
     var result = 0
@@ -50,7 +50,7 @@ fun adjacentPoints(y: Int, x: Int, input: List<List<Int>>): List<IntArray> {
 }
 
 fun main() {
-    val input = File("input.txt").useLines { lines ->
+    val input = readInput(2021, 9).useLines { lines ->
         lines.map { line -> line.toCharArray().map { it.digitToInt() } }.toList()
     }
     println(part1(input))

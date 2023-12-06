@@ -1,6 +1,6 @@
 package y2021.day07
 
-import java.io.File
+import util.readInput
 
 fun part1(input: List<Int>): Int {
     val min = input.minOrNull()!!
@@ -25,7 +25,7 @@ fun part1(input: List<Int>): Int {
 }
 
 fun main() {
-    val input = File("input.txt").useLines { lines ->
+    val input = readInput(2021, 7).useLines { lines ->
         lines.first().split(",").map { it.toInt() }
     }
     println(part1(input))

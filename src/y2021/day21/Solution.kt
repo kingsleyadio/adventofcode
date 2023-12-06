@@ -1,6 +1,6 @@
 package y2021.day21
 
-import java.io.File
+import util.readInput
 
 fun part1(p1: Int, p2: Int): Int {
     val scores = intArrayOf(0, 0)
@@ -62,7 +62,7 @@ fun part2(p1: Int, p2: Int): Long {
 }
 
 fun main() {
-    val (p1, p2) = File("input.txt").readLines().map { it.substringAfterLast(" ").toInt() }
+    val (p1, p2) = readInput(2021, 21).readLines().map { it.substringAfterLast(" ").toInt() }
     println(part1(p1, p2))
     println(part2(p1, p2))
 }

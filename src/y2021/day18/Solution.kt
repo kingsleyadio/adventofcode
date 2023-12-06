@@ -1,6 +1,6 @@
 package y2021.day18
 
-import java.io.File
+import util.readInput
 
 fun part1(input: List<String>): Int {
     return input.map(::parseMath).reduce { acc, math -> acc + math }.score()
@@ -20,7 +20,7 @@ fun part2(input: List<String>): Int {
 }
 
 fun main() {
-    val input = File("input.txt").readLines()
+    val input = readInput(2021, 18).readLines()
     println(part1(input))
     println(part2(input))
 }

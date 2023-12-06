@@ -1,6 +1,6 @@
 package y2021.day20
 
-import java.io.File
+import util.readInput
 
 fun solution(input: List<BooleanArray>, algorithm: String, sampleSize: Int): Int {
     fun enhance(image: List<BooleanArray>, infinityPixel: Boolean): Pair<List<BooleanArray>, Boolean> {
@@ -24,7 +24,7 @@ fun solution(input: List<BooleanArray>, algorithm: String, sampleSize: Int): Int
 }
 
 fun main() {
-    val lines = File("input.txt").readLines()
+    val lines = readInput(2021, 20).readLines()
     val algorithm = lines[0]
     val image = lines.drop(2).map { line -> line.map { it == '#' }.toBooleanArray() }
     println(solution(image, algorithm, 2))

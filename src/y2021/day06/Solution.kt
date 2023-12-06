@@ -1,6 +1,6 @@
 package y2021.day06
 
-import java.io.File
+import util.readInput
 
 fun solution(input: List<Int>, timeLeft: Int): Long {
     val cache = hashMapOf<String, Long>()
@@ -19,7 +19,7 @@ fun solution(input: List<Int>, timeLeft: Int): Long {
 }
 
 fun main() {
-    val input = File("input.txt").useLines { lines ->
+    val input = readInput(2021, 6).useLines { lines ->
         lines.first().split(",").map { it.toInt() }
     }
     println(solution(input, 80))

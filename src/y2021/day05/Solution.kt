@@ -1,6 +1,6 @@
 package y2021.day05
 
-import java.io.File
+import util.readInput
 import kotlin.math.abs
 
 fun main() {
@@ -11,7 +11,7 @@ fun main() {
 fun solution(useDiagonals: Boolean): Int {
     val points = hashSetOf<String>()
     val result = hashSetOf<String>()
-    File("input.txt").forEachLine { line ->
+    readInput(2021, 5).forEachLine { line ->
         val (x1, y1, x2, y2) = line.split(" -> ").flatMap { it.split(",") }.map { it.toInt() }
         when {
             x1 == x2 -> (if (y1 < y2) y1..y2 else y2..y1).forEach { y ->

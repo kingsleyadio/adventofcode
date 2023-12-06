@@ -1,6 +1,6 @@
 package y2021.day13
 
-import java.io.File
+import util.readInput
 import kotlin.math.max
 
 fun part1(dots: Set<Point>, command: Point): Int {
@@ -40,7 +40,7 @@ fun main() {
     val dots = hashSetOf<Point>()
     val commands = arrayListOf<Point>()
     var isDots = true
-    File("input.txt").forEachLine { line ->
+    readInput(2021, 13).forEachLine { line ->
         if (line.isEmpty()) isDots = false
         else if (isDots) dots.add(line.split(",").map { it.toInt() }.toPoint())
         else {

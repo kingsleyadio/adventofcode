@@ -1,6 +1,6 @@
 package y2021.day10
 
-import java.io.File
+import util.readInput
 
 fun main() {
     println(part1())
@@ -23,7 +23,7 @@ fun part1(): Int {
         }
         return ' ' // Ignore
     }
-    File("input.txt").useLines { lines ->
+    readInput(2021, 10).useLines { lines ->
         val scoresMap = mapOf(')' to 3, ']' to 57, '}' to 1197, '>' to 25137)
         return lines.map { findInvalidChar(it) }.sumOf { scoresMap[it] ?: 0 }
     }
@@ -45,7 +45,7 @@ fun part2(): Long {
         }
         return stack.reverse().toString()
     }
-    File("input.txt").useLines { lines ->
+    readInput(2021, 10).useLines { lines ->
         val scoresMap = mapOf('(' to 1, '[' to 2, '{' to 3, '<' to 4)
         val points =  lines
             .mapNotNull { evaluateCompletionString(it) }

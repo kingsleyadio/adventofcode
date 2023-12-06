@@ -1,6 +1,6 @@
 package y2021.day17
 
-import java.io.File
+import util.readInput
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -37,7 +37,7 @@ fun part2(xRange: List<Int>, yRange: List<Int>): Int {
 }
 
 fun main() {
-    File("input.txt").forEachLine { line ->
+    readInput(2021, 17).forEachLine { line ->
         val (xdata, ydata) = line.substringAfter("target area: ").split(", ")
         val xRange = xdata.substringAfter("=").split("..").map { it.toInt() }
         val yRange = ydata.substringAfter("=").split("..").map { it.toInt() }

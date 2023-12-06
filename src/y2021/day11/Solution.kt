@@ -1,10 +1,10 @@
 package y2021.day11
 
-import java.io.File
+import util.readInput
 
 fun solution(steps: Int, isPart2: Boolean): Int {
     // NOTE: isPart2=false returns number of glows and isPart2=true returns number of steps
-    val input = File("input.txt").useLines { lines ->
+    val input = readInput(2021, 11).useLines { lines ->
         lines.map { line -> line.toCharArray().map { it.digitToInt() }.toIntArray() }.toList()
     }
     fun glow(y: Int, x: Int, glowing: MutableSet<String>) {

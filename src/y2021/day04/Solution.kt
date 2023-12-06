@@ -1,6 +1,6 @@
 package y2021.day04
 
-import java.io.File
+import util.readInput
 
 fun solution(numbers: List<Int>, boards: MutableList<Board>, exitFirst: Boolean): Int {
     for (number in numbers) {
@@ -21,13 +21,13 @@ class Cell(val number: Int, var isMarked: Boolean)
 typealias Board = List<List<Cell>>
 
 fun main() {
-    val (numbers, boards) = readInput()
+    val (numbers, boards) = parseInput()
     println(solution(numbers, boards, exitFirst = true))
     // Continue part 2 with the same boards
     println(solution(numbers, boards, exitFirst = false))
 }
 
-fun readInput(): Pair<List<Int>, MutableList<Board>> = File("input.txt").useLines { lines ->
+fun parseInput(): Pair<List<Int>, MutableList<Board>> = readInput(2021, 4).useLines { lines ->
     val iterator = lines.iterator()
     val numbers = iterator.next().split(",").map { it.toInt() }
 

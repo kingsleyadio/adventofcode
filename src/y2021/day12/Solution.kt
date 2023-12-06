@@ -1,6 +1,6 @@
 package y2021.day12
 
-import java.io.File
+import util.readInput
 
 fun part1(graph: Map<String, List<String>>, start: String, end: String): Int {
     var count = 0
@@ -42,7 +42,7 @@ fun part2(graph: Map<String, List<String>>, start: String, end: String): Int {
 
 fun main() {
     val graph = buildMap<String, MutableList<String>> {
-        File("input.txt").forEachLine { line ->
+        readInput(2021, 12).forEachLine { line ->
             val (current, dest) = line.split("-")
             getOrPut(current) { arrayListOf() }.add(dest)
             getOrPut(dest) { arrayListOf() }.add(current)

@@ -1,7 +1,7 @@
 package y2021.day15
 
+import util.readInput
 import y2021.day13.Point
-import java.io.File
 import java.util.*
 
 fun solution(input: List<IntArray>): Int {
@@ -33,7 +33,7 @@ data class Path(val to: Point, val cost: Int)
 
 fun main() {
     val input = buildList {
-        File("input.txt").forEachLine { line -> add(line.map { it.digitToInt() }.toIntArray()) }
+        readInput(2021, 15).forEachLine { line -> add(line.map { it.digitToInt() }.toIntArray()) }
     }
     println(solution(input))
     val newInput = input.expand(5)

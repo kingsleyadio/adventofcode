@@ -1,9 +1,9 @@
 package y2021.day16
 
-import java.io.File
+import util.readInput
 
 fun main() {
-    File("input.txt").forEachLine { line ->
+    readInput(2021, 16).forEachLine { line ->
         val input = line.map { it.digitToInt(16).toString(2).padStart(4, '0') }.joinToString("")
         val packet = parse(input)
         println(packet.versionSum())

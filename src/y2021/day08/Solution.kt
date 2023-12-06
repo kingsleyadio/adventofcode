@@ -1,6 +1,6 @@
 package y2021.day08
 
-import java.io.File
+import util.readInput
 
 fun main() {
     println(part1())
@@ -8,7 +8,7 @@ fun main() {
 }
 
 fun part1(): Int {
-    File("input.txt").useLines { lines ->
+    readInput(2021, 8).useLines { lines ->
         val knownLengths = listOf(2, 3, 4, 7)
         return lines
             .map { it.substringAfterLast("| ") }
@@ -19,7 +19,7 @@ fun part1(): Int {
 
 fun part2(): Int {
     var result = 0
-    File("input.txt").forEachLine { line ->
+    readInput(2021, 8).forEachLine { line ->
         val (numberString, puzzleString) = line.split(" | ")
         val numbers = numberString.split(" ").map { it.toSet() }
         val decodedList = arrayOfNulls<Set<Char>>(10)

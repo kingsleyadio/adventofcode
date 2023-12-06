@@ -1,6 +1,6 @@
 package y2021.day22
 
-import util.Aoc21
+import util.readInput
 
 fun part1(commands: List<Command>): Int {
     val bound = -50..50
@@ -40,7 +40,7 @@ fun sum(cuboids: List<Cuboid>): Long {
 
 
 fun main() {
-    val commands = Aoc21.readInput("day22").useLines { lines -> lines.map(::parse).toList() }
+    val commands = readInput(2021, 22).useLines { lines -> lines.map(::parse).toList() }
     println(part1(commands))
     println(part2(commands))
 }

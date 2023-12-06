@@ -1,6 +1,6 @@
 package y2021.day03
 
-import java.io.File
+import util.readInput
 
 fun main() {
     part1()
@@ -10,7 +10,7 @@ fun main() {
 fun part1() {
     var size = 0
     var array = IntArray(0)
-    File("input.txt").forEachLine { line ->
+    readInput(2021, 3).forEachLine { line ->
         size++
         if (array.isEmpty()) array = IntArray(line.length) // adjust array size
         array.indices.forEach { i -> if (line[i] == '1') array[i]++ }
@@ -26,7 +26,7 @@ fun part1() {
 }
 
 fun part2() {
-    File("input.txt").useLines { lines ->
+    readInput(2021, 3).useLines { lines ->
         val list = lines.map { it.map(Char::digitToInt) }.toList()
         val o2 = reduce(list, mostSignificant = true)
         val co2 = reduce(list, mostSignificant = false)
