@@ -76,6 +76,5 @@ class Problem(val grid: List<String>, val numberIndices: Map<Index, NumberInfo>)
 data class NumberInfo(val y: Int, val xRange: IntRange) {
     fun evaluate(grid: List<String>) = grid[y].substring(xRange).toInt()
 }
-data class Index(val x: Int, val y: Int)
 
 fun Char.isSymbol() = this !in '0'..'9' && this != '.'
