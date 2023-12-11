@@ -8,9 +8,25 @@ fun main() {
     part2()
 }
 
-private fun part1() = evaluate(2)
+private fun part1() = fastEvaluate(2)
 
-private fun part2() = evaluate(1_000_000)
+private fun part2() = fastEvaluate(1_000_000)
+
+private fun fastEvaluate(expansion: Int) {
+    val (world, planets) = buildModel(expansion)
+    var sumOfDistances = 0L
+    for (i in planets.indices) {
+        val planet = planets[i]
+        for (k in i + 1..planets.lastIndex) sumOfDistances += planet.fastDistanceTo(planets[k], world)
+    }
+    println(sumOfDistances)
+}
+
+private fun Index.fastDistanceTo(to: Index, world: List<IntArray>): Int {
+    val xDistance = (minOf(x, to.x) + 1..maxOf(x, to.x)).sumOf { xi -> world[minOf(y, to.y)][xi].coerceAtLeast(1) }
+    val yDistance = (minOf(y, to.y) + 1..maxOf(y, to.y)).sumOf { yi -> world[yi][minOf(x, to.x)].coerceAtLeast(1) }
+    return xDistance + yDistance
+}
 
 private fun evaluate(expansion: Int) {
     val (world, planets) = buildModel(expansion)
@@ -18,7 +34,7 @@ private fun evaluate(expansion: Int) {
     for (i in planets.indices) {
         val planet = planets[i]
         val paths = shortestPath(world, planet)
-        for (k in i+1..planets.lastIndex) {
+        for (k in i + 1..planets.lastIndex) {
             val second = planets[k]
             sumOfDistances += paths[second.y][second.x]
         }
