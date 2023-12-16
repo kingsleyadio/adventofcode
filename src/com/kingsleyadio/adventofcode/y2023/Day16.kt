@@ -22,56 +22,48 @@ private fun part2(grid: List<String>) {
     println(max)
 }
 
-private fun energize(grid: List<String>, current: Index, direction: Index): Int {
-    val visited = List(grid.size) { BooleanArray(grid[0].length) }
-    energize(grid, current, direction, visited, hashSetOf())
-    return visited.sumOf { it.count { active -> active } }
-}
-
-private fun energize(
-    grid: List<String>,
-    current: Index,
-    direction: Index,
-    energized: List<BooleanArray>,
-    visited: MutableSet<Pair<Index, Index>>
-) {
-    val visitId = current to direction
-    if (current.y !in grid.indices || current.x !in grid[0].indices || visitId in visited) return
-    visited.add(visitId)
-    energized[current.y][current.x] = true
-    val cell = grid[current.y][current.x]
-    if (cell == '-') {
-        if (direction.y == 0) { // horizontal, do nothing special
-            val next = current + direction
-            energize(grid, next, direction, energized, visited)
+private fun energize(grid: List<String>, start: Index, startDirection: Index): Int {
+    val queue = ArrayDeque<Pair<Index, Index>>()
+    val energized = List(grid.size) { BooleanArray(grid[0].length) }
+    val visited = hashSetOf<Pair<Index, Index>>()
+    queue.addLast(start to startDirection)
+    while (queue.isNotEmpty()) {
+        val visitId = queue.removeFirst()
+        val (current, direction) = visitId
+        if (current.y !in grid.indices || current.x !in grid[0].indices || visitId in visited) continue
+        energized[current.y][current.x] = true
+        visited.add(visitId)
+        
+        val cell = grid[current.y][current.x]
+        if (cell == '-') {
+            if (direction.y == 0) { // horizontal, do nothing special
+                queue.addLast(current + direction to direction)
+            } else {
+                queue.addLast(current + Index(1, 0) to Index(1, 0))
+                queue.addLast(current + Index(-1, 0) to Index(-1, 0))
+            }
+        } else if (cell == '|') {
+            if (direction.x == 0) { // vertical, do nothing special
+                queue.addLast(current + direction to direction)
+            } else {
+                queue.addLast(current + Index(0, 1) to Index(0, 1))
+                queue.addLast(current + Index(0, -1) to Index(0, -1))
+            }
+        } else if (cell == '/') {
+            val newDirection = if (direction.x == 1) Index(0, -1)
+            else if (direction.x == -1) Index(0, 1)
+            else if (direction.y == 1) Index(-1, 0)
+            else Index(1, 0)
+            queue.addLast(current + newDirection to newDirection)
+        } else if (cell == '\\') {
+            val newDirection = if (direction.x == 1) Index(0, 1)
+            else if (direction.x == -1) Index(0, -1)
+            else if (direction.y == 1) Index(1, 0)
+            else Index(-1, 0)
+            queue.addLast(current + newDirection to newDirection)
         } else {
-            energize(grid, current + Index(1, 0), Index(1, 0), energized, visited)
-            energize(grid, current + Index(-1, 0), Index(-1, 0), energized, visited)
+            queue.addLast(current + direction to direction)
         }
-    } else if (cell == '|') {
-        if (direction.x == 0) { // vertical, do nothing special
-            val next = current + direction
-            energize(grid, next, direction, energized, visited)
-        } else {
-            energize(grid, current + Index(0, 1), Index(0, 1), energized, visited)
-            energize(grid, current + Index(0, -1), Index(0, -1), energized, visited)
-        }
-    } else if (cell == '/') {
-        val newDirection = if (direction.x == 1) Index(0, -1)
-        else if (direction.x == -1) Index(0, 1)
-        else if (direction.y == 1) Index(-1, 0)
-        else Index(1, 0)
-        val next = current + newDirection
-        energize(grid, next, newDirection, energized, visited)
-    } else if (cell == '\\') {
-        val newDirection = if (direction.x == 1) Index(0, 1)
-        else if (direction.x == -1) Index(0, -1)
-        else if (direction.y == 1) Index(1, 0)
-        else Index(-1, 0)
-        val next = current + newDirection
-        energize(grid, next, newDirection, energized, visited)
-    } else {
-        val next = current + direction
-        energize(grid, next, direction, energized, visited)
     }
+    return energized.sumOf { it.count { active -> active } }
 }
