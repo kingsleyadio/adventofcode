@@ -48,7 +48,4 @@ private fun patrol(input: List<String>, start: Index, extraObstacle: Index? = nu
     return visited.size
 }
 
-private data class Index(val x: Int, val y: Int)
-private operator fun Index.plus(other: Index) = Index(x + other.x, y + other.y)
-
 private val directions = listOf(Index(0, -1), Index(1, 0), Index(0, 1), Index(-1, 0))
