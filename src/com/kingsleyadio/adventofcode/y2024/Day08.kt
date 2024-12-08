@@ -20,12 +20,10 @@ private fun part1(frequencies: Map<Char, List<Index>>, boundary: Rect) = solve(f
 }
 
 private fun part2(frequencies: Map<Char, List<Index>>, boundary: Rect) = solve(frequencies) { a, b ->
-    add(a)
-    add(b)
     val diff = a - b
-    val antinodes = arrayOf(a + diff, b - diff)
-    while (antinodes[0] in boundary) { add(antinodes[0]); antinodes[0] += diff }
-    while (antinodes[1] in boundary) { add(antinodes[1]); antinodes[1] -= diff }
+    val antinodes = arrayOf(a - diff, b + diff) // Invert direction from p1 to ensure a & b are also captured
+    while (antinodes[0] in boundary) { add(antinodes[0]); antinodes[0] -= diff }
+    while (antinodes[1] in boundary) { add(antinodes[1]); antinodes[1] += diff }
 }
 
 private inline fun solve(frequencies: Map<Char, List<Index>>, find: MutableSet<Index>.(a: Index, b: Index) -> Unit) {
