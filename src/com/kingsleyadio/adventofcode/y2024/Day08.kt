@@ -1,6 +1,6 @@
 package com.kingsleyadio.adventofcode.y2024
 
-import com.kingsleyadio.adventofcode.util.readInput
+import com.kingsleyadio.adventofcode.util.*
 
 fun main() {
     val input = readInput(2024, 8, false).readLines()
