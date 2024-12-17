@@ -1,11 +1,13 @@
 package com.kingsleyadio.adventofcode.util
 
 data class Index(val x: Int, val y: Int)
+
 operator fun Index.plus(other: Index) = Index(x + other.x, y + other.y)
 operator fun Index.minus(other: Index) = Index(x - other.x, y - other.y)
 operator fun Index.times(multiplier: Int) = Index(x * multiplier, y * multiplier)
 
 data class Rect(val x: IntRange, val y: IntRange)
+
 operator fun Rect.contains(other: Index) = other.y in y && other.x in x
 
 object Directions {
@@ -18,9 +20,7 @@ object Directions {
     @JvmField val SE = Index(1, 1)
     @JvmField val SW = Index(-1, 1)
 
-    @JvmField
-    val Cardinal = listOf(N, E, S, W)
-    @JvmField
-    val InterCardinal = listOf(NE, SE, SW, NW)
+    @JvmField val Cardinal = listOf(N, E, S, W)
+    @JvmField val InterCardinal = listOf(NE, SE, SW, NW)
     @JvmField val Compass = Cardinal + InterCardinal
 }
