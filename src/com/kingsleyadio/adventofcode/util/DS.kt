@@ -1,10 +1,14 @@
 package com.kingsleyadio.adventofcode.util
 
+import kotlin.math.abs
+
 data class Index(val x: Int, val y: Int)
 
 operator fun Index.plus(other: Index) = Index(x + other.x, y + other.y)
 operator fun Index.minus(other: Index) = Index(x - other.x, y - other.y)
 operator fun Index.times(multiplier: Int) = Index(x * multiplier, y * multiplier)
+
+fun Index.manhattanDistanceTo(other: Index) = abs(x - other.x) + abs(y - other.y)
 
 data class Rect(val x: IntRange, val y: IntRange)
 
