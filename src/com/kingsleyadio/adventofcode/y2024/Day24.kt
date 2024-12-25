@@ -71,29 +71,19 @@ private fun part2(circuits: Map<Complex, List<Simple>>, zcount: Int) {
         val z = Simple("z$number")
         var xxy = alias(Complex(x, "XOR", y))
         val xay = alias(Complex(x, "AND", y))
-        if (index == 0) c = xay else if (index == zcount - 1) if (c != z) misplaced.add(z)
-        if (index !in 1..<zcount - 1) continue
-        val s = alias(Complex(xxy, "XOR", c))
+        val s = if (index == 0) xxy else if (index == zcount - 1) c else alias(Complex(xxy, "XOR", c))
         if (s != z) {
             val zr = reverse.getValue(z)
-            when (s) {
-                is Simple -> when {
-                    xxy == zr.a -> c = zr.b
-                    xxy == zr.b -> c = zr.a
-                    c == zr.a -> xxy = zr.b
-                    c == zr.b -> xxy = zr.a
-                }
-                is Complex -> when {
-                    s.a == zr.a -> c = zr.b
-                    s.a == zr.b -> c = zr.a
-                    s.b == zr.a -> xxy = zr.b
-                    else -> xxy = zr.a
-                }
+            when {
+                xxy == zr.a -> c = zr.b
+                xxy == zr.b -> c = zr.a
+                c == zr.a -> xxy = zr.b
+                c == zr.b -> xxy = zr.a
             }
             misplaced.add(findCulprit(s, zr))
         }
-        val xxyac = alias(Complex(c, "AND", xxy))
-        c = alias(Complex(xxyac, "OR", xay))
+        val xxyac = alias(Complex(xxy, "AND", c))
+        c = (if (index == 0) xay else alias(Complex(xay, "OR", xxyac)))
     }
     println(misplaced.sorted().joinToString(","))
 }
