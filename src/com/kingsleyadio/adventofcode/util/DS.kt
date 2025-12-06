@@ -2,6 +2,8 @@ package com.kingsleyadio.adventofcode.util
 
 import kotlin.math.abs
 
+val IntRange.size: Int get() = last - first + 1
+
 data class Index(val x: Int, val y: Int)
 
 operator fun Index.plus(other: Index) = Index(x + other.x, y + other.y)
